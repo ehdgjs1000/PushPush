@@ -54,7 +54,11 @@ public class BallCtrl : MonoBehaviour
         if (isTrigger)
         {
             triggerTime += Time.deltaTime;
-            if (triggerTime >= 1.0f && !GameManager.instance.isEndGame) EndGame();
+            if(GameManager.instance != null)
+            {
+                if (triggerTime >= 1.0f && !GameManager.instance.isEndGame) EndGame();
+            }
+            
         }
         // 테스트용 -> UI 연결
         if (Input.GetKeyDown(KeyCode.Z))
@@ -113,11 +117,16 @@ public class BallCtrl : MonoBehaviour
         }
             
     }
+    public void MoveBack()
+    {
+        StopAllCoroutines();
+        Vector2 target = ComputeTargetPoint(-dirSave);
+        StartCoroutine(MoveTo(target));
+    }
     public void MoveAfterDoorBtnClick()
     {
         StopAllCoroutines();
         Vector2 target = ComputeTargetPoint(dirSave);
-        Debug.Log(target);
         StartCoroutine(MoveTo(target));
     }
     Vector2 ComputeTargetPoint(Vector2 dir)
