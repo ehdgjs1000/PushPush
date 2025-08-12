@@ -18,6 +18,7 @@ public class BallCtrl : MonoBehaviour
 
     Vector2 startTouchPos;
     bool touching;
+    Vector2 dirSave;
 
     //Undo ¿˙¿Âº“
     Stack<Vector2> positionHistory = new Stack<Vector2>();
@@ -112,9 +113,16 @@ public class BallCtrl : MonoBehaviour
         }
             
     }
-
+    public void MoveAfterDoorBtnClick()
+    {
+        StopAllCoroutines();
+        Vector2 target = ComputeTargetPoint(dirSave);
+        Debug.Log(target);
+        StartCoroutine(MoveTo(target));
+    }
     Vector2 ComputeTargetPoint(Vector2 dir)
     {
+        dirSave = dir;
         Vector2 origin = rb.position;
 
         float radius = 0f;

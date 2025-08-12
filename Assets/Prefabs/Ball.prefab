@@ -161,9 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42823dd75c3d4084fbed1c8623ec3a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 30
   minSwipePixels: 30
   skin: 0.01
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
+  isMoving: 0
+  lastPortal: {fileID: 0}
+  teleportCount: 1
+  isTeleporting: 0

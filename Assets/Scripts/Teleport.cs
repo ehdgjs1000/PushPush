@@ -16,7 +16,11 @@ public class Teleport : MonoBehaviour
         var col = GetComponent<Collider2D>();
         col.isTrigger = true; // 포탈은 트리거
     }
-
+    private void Start()
+    {
+        SpriteRenderer thisSR = GetComponent<SpriteRenderer>();
+        thisSR.color = Color.white;
+    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (other == null) return;
@@ -40,5 +44,10 @@ public class Teleport : MonoBehaviour
 
         // 상태 갱신
         ball.lastPortal = other;
+        SpriteRenderer thisSR = GetComponent<SpriteRenderer>();
+        SpriteRenderer otherSR = other.GetComponent<SpriteRenderer>();
+        thisSR.color = Color.black;
+        otherSR.color = Color.black;
+        
     }
 }
